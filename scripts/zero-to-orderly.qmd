@@ -1,0 +1,41 @@
+---
+title: "From Zero to oRderly"
+subtitle: "Mastering Project Organization"
+---
+
+# Introduction 
+
+In this section, you will learn how to set up a new repository on GitHub and connect it to RStudio. This will allow you to keep track of your code changes and collaborate with others more easily. You will also learn proper project organization to prepare your project for sharing with others.
+
+# Create a New Repository on GitHub
+
+First, you will learn how to create a new repository on GitHub. Follow the steps below to get started.
+
+1. Go to [GitHub](https://github.com/) and log in to your account.
+2. Click on the "+" sign in the top right corner and select "New repository".
+3. Enter a name for your repository and a description (optional).
+4. Choose whether you want your repository to be public or private.
+5. Click on "Create repository".
+
+# Create a New Project in RStudio
+
+Next, you will learn how to create a new project in RStudio and connect it to your GitHub repository. 
+
+1. Open RStudio and click on "New Project" in the top right corner.
+2. Select "Version Control" and then "Git".
+3. Go to the repository you want to connect to on GitHub and click on the green "Code" button.
+4. Copy the URL of the repository and paste it in the "Repository URL" box.
+5. Choose a directory for your project and click "Create Project". We recommend to save all R projects in a folder on your desktop.
+6. You may be prompted to enter your GitHub username and password. Enter them and click "Sign In".
+
+# Project Organization
+Now that you have set up your project, it's time to organize it properly. Here are some tips to help you keep your project organized:
+
+1. Create a "data" folder to store your data files. You will want to create subfolders for each type of data, such as raw, prepared, and public.
+2. Create a "scripts" folder to store your R scripts.
+3. Create a "output" folder to store your plots, figures and tables. You will  want to create subfolders for each type of relevant output (e.g., "viz","tables", "models").
+4. Create a "background docs" folder to store any background documentation or literature reviews.
+5. Create an "instruments" folder to store any instruments or questionnaires used in your project.
+6. Create a "reports" folder to store any reports or presentations related to your project.
+
+This is the base structure of a project. You can add more folders as needed. For example, if you may need to include images, you can create an "images" folder.
