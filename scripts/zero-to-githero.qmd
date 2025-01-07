@@ -166,6 +166,8 @@ To commit your changes, follow these steps:
 
 5.  Finally, click “Push” to send the changes to GitHub.
 
+There are a few files that do *not* need to be committed to Git. These include .gitignore and .Rproj files. The .gitignore file tells Git which files to ignore when committing changes. The .Rproj file is specific to RStudio and should not be committed to Git.
+
 **Best practice is to pull at the beginning of your work session and commit then push your changes at the end of each work session.**
 
 ### A Note on Commit Messages
