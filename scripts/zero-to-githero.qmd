@@ -66,41 +66,63 @@ Taken from [Happy Git and GitHub for the useR.](https://happygitwithr.com/github
 
 -   Avoid the use of upper vs. lower case to separate words. They highly recommend all lowercase. GitHub treats usernames in a case insensitive way, but using all lowercase is kinder to people doing downstream regular expression work with usernames, in various languages. A better strategy for word separation is to use a hyphen`-`.
 
-## Install R and RStudio
+## Option 1: Posit Cloud
 
-1\) Download R for free from the [Comprehensive R Archive Network](https://cran.r-project.org/) (CRAN) and download RStudio for free from [Posit](https://www.rstudio.com/products/rstudio/); **OR**
+There is an [online version](https://posit.cloud/) of RStudio that is provided by Posit, called Posit Cloud. This is an easy way to get started so you don't have to worry about installation permissions, amongst other things. Also, Git is pre-installed in Posit Cloud and you won't need to worry about installing it.
 
-2\) Use an [online version](https://posit.cloud/) of RStudio that is provided by Posit. This way you do not have to worry about what computer you have or installation permissions, amongst other things.
+All you need to do is sign up for a free account and you are ready to go. You can access your RStudio projects from any device with an internet connection.
 
-## Install Git
+## Option 2: Install Software to Machine
 
-Next you will need to check whether Git is installed. If you went with option 2, rejoice, Git is pre-installed in Posit Cloud and you can skip this step.
+### Install R and RStudio
 
-If you went with option 1 above, open RStudio on your machine, go to the Terminal, type the following, and then enter/return.
+First, you need to have R and RStudio installed on your machine. This option is recommended if you are planning to work on projects offline.
+
+-   Download R for free from the [Comprehensive R Archive Network](https://cran.r-project.org/) (CRAN). Once you selected your operating system, click on the "install R for the first time" link.
+
+-   Download RStudio for free from [Posit](https://posit.co/download/rstudio-desktop/). Once here, you will want to click "Download RStudio Desktop" under the 2: Install RStudio header.
+
+### Install Git
+
+Open RStudio on your machine, go to the Terminal, type the following, and then enter/return.
 
 `git --version`
 
 If you get a version number, then you are done. If instead, you see something like `git: command not found`, then you need to install it.
 
-### For Windows
+#### For Windows
 
 Install [Git for Windows](https://git-for-windows.github.io/), also known as “Git Bash”.
 
-Note that RStudio for Windows prefers for Git to be installed below C:/Program Files and this appears to be the default. This implies, for example, that the Git executable on my Windows system is found at C:/Program Files/Git/bin/git.exe. It is recommended to follow this convention.
+> When install Git, please save the path to where it is being saved. It will save you a little extra time later. Note that RStudio for Windows prefers for Git to be installed below C:/Program Files and this appears to be the default. This implies, for example, that the Git executable on my Windows system is found at C:/Program Files/Git/bin/git.exe. It is recommended to follow this convention.
 
 If you already have Git for Windows, but it’s not the latest version, it’s a good idea to update. If you have a version older than 2.45.1, it is *highly* advisable to upgrade. You can update like so from the Terminal:
 
 `git update-git-for-windows`
 
-### For macOS
+#### For macOS
 
 You may have noticed once you entered the command `git --version` in the Terminal, your machine elicited an offer to install developer command line tools. Accept the offer! Click on “Install”.
 
-## Git Config
+### Connect with Git
 
-Now whether you went through the process to install everything to your machine, or if you took the easy way out (I don't blame you) and are using the online RStudio, it's time to configure your GitHub account to your machine.
+After you went through the process to install everything to your machine, it's time to connect Git to your RStudio and configure your GitHub account to your machine.
 
-Once again open RStudio, go to the Terminal, type the following, but with replacing with your user name from your GitHub account. Then press enter/return.
+First, in RStudio you want to go to the Tools \> Global Options \> Git/SVN. Under "Git executable" click browse and paste in the link to the folder Git was saved under.
+
+It may look something like:
+
+```         
+C:\Users\melanie.murphy\AppData\Local\Programs\Git
+```
+
+> If you didn't save the path, go to the search bar by your start menu and type in "Git". There are a few sections that will pop up with results. Look for git under the "Command" section and click the arrow on the right. There will be an option to open file location. If you end up in a folder *not* called bin, then click on the Git folder in the folder path.
+
+Once here, you will want to go to the bin folder and select the file "git.exe". Click "Open", then you will back back to the Global Options window and can click "OK".
+
+#### Git Config
+
+Next, go to the Terminal, type the following, but with replacing with your user name from your GitHub account. Then press enter/return.
 
 `git config --global user.name "jane.doe"`
 
@@ -108,17 +130,19 @@ Again in the Terminal, type the following, but with replacing with your email ad
 
 `git config --global user.email "jane@example.com"`
 
-Finally to check that everything is set up correctly, type the following in the Terminal and press enter/return.
+Finally, to check that everything is set up correctly, type the following in the Terminal and press enter/return.
 
 `git config --global --list`
 
 Congratulations! You are now set up to use Git with RStudio. Now you can move on to the next section to learn how to set up a new repository on GitHub and connect it to RStudio.
 
-# Setting Up Your Project
+# The Beginnings with Git
 
-## Create a New Repository on GitHub
+In this section, we will cover creating a new repository in GitHub, connecting a repository to RStudio, the ins and outs of Git commands and how to properly set up your folder structure for your project. These are the beginning steps in getting started with Git.
 
-First, you need to create a new repository on GitHub. Follow the steps below to get started.
+## Create a New Repository
+
+Follow the steps below to create a new repository on GitHub.
 
 1.  Go to [GitHub](https://github.com/) and log in to your account.
 
@@ -126,27 +150,75 @@ First, you need to create a new repository on GitHub. Follow the steps below to 
 
 3.  Enter a name for your repository and a description (optional).
 
-4.  Choose whether you want your repository to be public or private.
+4.  Select whether you want your repository to have a README file.
 
-5.  Click on "Create repository".
+5.  Choose whether you want your repository to be public or private.
 
-## Create a New Project in RStudio
+6.  Click on "Create repository".
 
-Next, you will create a new project in RStudio and connect it to your GitHub repository.
+## Create a New Project
 
-1.  Open RStudio and click on "New Project" in the top right corner.
+### Posit Cloud
+
+Follow the steps below to connect your GitHub repository to RStudio online.
+
+1.  When in your Posit Cloud account, click on your name in the top right corner. You will see a drop down menu with the option "Authentication".
+
+2.  Click on this then click on the "Enabled" button next to GitHub. You will be prompted to sign in to your GitHub account.
+
+3.  After you have connected your GitHub account, you will go back to your workspace and select the button that says "New Project".
+
+4.  Click on this button and you will see the option "New Project from Git Repository".
+
+5.  Click on this option and you will be prompted to enter the URL of the repository you want to clone.
+
+6.  Copy the URL from the repository you created on GitHub and paste it in the box. Click "OK".
+
+An example URL will look like:
+
+```         
+https://github.com/ManagementSystemsIntl/r-from-zero
+```
+
+Success! Now that your project is set up, you can start working on your analysis and commit your changes to GitHub.
+
+### RStudio Desktop Version
+
+When you have a repository you want to clone to your machine, you will create a new project in RStudio and connect it to the GitHub repository.
+
+1.  Open RStudio and click on "File" then "New Project" in the top left corner.
 
 2.  Select "Version Control" and then "Git".
 
 3.  Go to the repository you want to connect to on GitHub and click on the green "Code" button.
 
-4.  Copy the URL of the repository and paste it in the "Repository URL" box.
+4.  Copy the URL under HTTPS and paste it in the "Repository URL" box.
 
 5.  Choose a directory for your project and click "Create Project". We recommend to save all R projects in a folder on your desktop.
 
 6.  You may be prompted to enter your GitHub username and password. Enter them and click "Sign In".
 
 Success! Now that your project is set up, you can start working on your analysis and commit your changes to GitHub.
+
+### Bonus Content: Project Organization
+
+Now that you have set up your project, it's time to organize it properly. Here are the common folders you should include in your project:
+
+1.  Create a "data" folder to store your data files. You will want to create subfolders for each type of data, such as raw, prepared, and public.
+
+2.  Create a "scripts" folder to store your R scripts.
+
+3.  Create a "output" folder to store your plots, figures and tables. You will want to create subfolders for each type of relevant output (e.g., "viz","tables", "models").
+
+4.  Create a "background docs" folder to store any background documentation or literature reviews.
+
+5.  Create an "instruments" folder to store any instruments or questionnaires used in your project.
+
+6.  Create a "reports" folder to store any reports or presentations related to your project.
+
+This is the base structure of a project. You can add more folders as needed. For example, if you may need to include images, you can create an "images" folder.
+
+## A Few Things About Git
 
 ### A Note on Committing
 
@@ -181,21 +253,3 @@ Add graphs
 
 Graphs of unemployment and inflation added into Data section.
 ```
-
-## Project Organization
-
-Now that you have set up your project, it's time to organize it properly. Here are some tips to help you keep your project organized:
-
-1.  Create a "data" folder to store your data files. You will want to create subfolders for each type of data, such as raw, prepared, and public.
-
-2.  Create a "scripts" folder to store your R scripts.
-
-3.  Create a "output" folder to store your plots, figures and tables. You will want to create subfolders for each type of relevant output (e.g., "viz","tables", "models").
-
-4.  Create a "background docs" folder to store any background documentation or literature reviews.
-
-5.  Create an "instruments" folder to store any instruments or questionnaires used in your project.
-
-6.  Create a "reports" folder to store any reports or presentations related to your project.
-
-This is the base structure of a project. You can add more folders as needed. For example, if you may need to include images, you can create an "images" folder.
