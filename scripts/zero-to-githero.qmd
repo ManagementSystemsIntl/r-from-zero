@@ -142,8 +142,14 @@ Add graphs
 Graphs of unemployment and inflation added into Data section.
 ```
 
-# Bonus Content: Project Organization
+# Bonus Content
 
+::::: box
+::: box-header
+Project Organization
+:::
+
+::: box-container
 Now that you have set up your project, it's time to organize it properly. Here are the common folders you should include in your project:
 
 1.  Create a "data" folder to store your data files. You will want to create subfolders for each type of data, such as raw, prepared, and public.
@@ -159,4 +165,5 @@ Now that you have set up your project, it's time to organize it properly. Here a
 6.  Create a "reports" folder to store any reports or presentations related to your project.
 
 This is the base structure of a project. You can add more folders as needed. For example, if you may need to include images, you can create an "images" folder.
-
+:::
+:::::

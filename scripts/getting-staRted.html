@@ -3046,7 +3046,7 @@ background: #CACACA;
 </style>
 
 
-<link rel="stylesheet" href="styles.css">
+<style type="text/css"><style>title {font-family: Corbel;color: #133469;font-size: 32;}h1 {font-family: Corbel;color: #003478; font-size: 28px;}h2 {font-family: Corbel;color: #007C92;font-size: 20px;}h3 {font-family: Corbel;color: #AC83B3;font-size: 18px;}.box {margin: 1em ;border: 2px solid #009CA6;border-left: 10px solid #009CA6; border-radius: 10px;}.box-header {margin-left: 0em;padding-left: 30px;padding-top: 5px;padding-bottom: 5px;color: white;text-indent: 0em;background-color: #009CA6;border-top-right-radius: 10px;font-size: 1em;font-weight: bold;background-size: 40px;background-repeat: no-repeat;background-position: 15px center;}.box-container {padding-top: 5px;padding-left: 10px;color: #133469;background-color: white;border-bottom-right-radius: 10px;}.quarto-title-block .quarto-title-banner {background-image: url(../viz/logo.png);background-size: 120px;background-position: left;background-repeat: no-repeat;padding-left: 10px;background-origin: content-box;font-family: Corbel;color: #133469;font-size: 32;}</style>
 </head>
 
 <body>
@@ -3073,13 +3073,7 @@ background: #CACACA;
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a>
-  <ul class="collapse">
-  <li><a href="#why-use-git-and-github" id="toc-why-use-git-and-github" class="nav-link" data-scroll-target="#why-use-git-and-github">Why Use Git and GitHub?</a></li>
-  </ul></li>
-  <li><a href="#getting-set-up" id="toc-getting-set-up" class="nav-link" data-scroll-target="#getting-set-up">Getting Set Up</a>
-  <ul class="collapse">
-  <li><a href="#register-a-github-account" id="toc-register-a-github-account" class="nav-link" data-scroll-target="#register-a-github-account">Register a GitHub account</a>
+  <li><a href="#register-a-github-account" id="toc-register-a-github-account" class="nav-link active" data-scroll-target="#register-a-github-account">Register a GitHub account</a>
   <ul class="collapse">
   <li><a href="#some-username-advice" id="toc-some-username-advice" class="nav-link" data-scroll-target="#some-username-advice">Some Username Advice</a></li>
   </ul></li>
@@ -3087,8 +3081,14 @@ background: #CACACA;
   <li><a href="#option-2-install-software-to-machine" id="toc-option-2-install-software-to-machine" class="nav-link" data-scroll-target="#option-2-install-software-to-machine">Option 2: Install Software to Machine</a>
   <ul class="collapse">
   <li><a href="#install-r-and-rstudio" id="toc-install-r-and-rstudio" class="nav-link" data-scroll-target="#install-r-and-rstudio">Install R and RStudio</a></li>
-  <li><a href="#install-git" id="toc-install-git" class="nav-link" data-scroll-target="#install-git">Install Git</a></li>
-  <li><a href="#connect-with-git" id="toc-connect-with-git" class="nav-link" data-scroll-target="#connect-with-git">Connect with Git</a></li>
+  <li><a href="#install-git" id="toc-install-git" class="nav-link" data-scroll-target="#install-git">Install Git</a>
+  <ul class="collapse">
+  <li><a href="#for-windows" id="toc-for-windows" class="nav-link" data-scroll-target="#for-windows">For Windows</a></li>
+  <li><a href="#for-macos" id="toc-for-macos" class="nav-link" data-scroll-target="#for-macos">For macOS</a></li>
+  </ul></li>
+  <li><a href="#connect-with-git" id="toc-connect-with-git" class="nav-link" data-scroll-target="#connect-with-git">Connect with Git</a>
+  <ul class="collapse">
+  <li><a href="#git-config" id="toc-git-config" class="nav-link" data-scroll-target="#git-config">Git Config</a></li>
   </ul></li>
   </ul></li>
   </ul>
@@ -3100,35 +3100,11 @@ background: #CACACA;
 
 
 
-<section id="introduction" class="level1">
-<h1>Introduction</h1>
-<p>This resource is designed to help you get started with Git and GitHub in RStudio. It will guide you through the process of setting up Git and GitHub, creating a new repository, and connecting it to RStudio. By the end of this resource, you will be able to use Git and GitHub to manage your projects more effectively and collaborate with others.</p>
-<p>But first, let’s provide a little background on what these tools are and why you should use them in your projects.</p>
-<p><strong>R</strong> is a programming language and software environment for statistical computing and graphics. It is widely used by statisticians, data scientists, and researchers to analyze data, create visualizations, and build models.</p>
-<p><strong>RStudio</strong> is a powerful tool that makes it easier to write and run R code. It includes a console, a script editor, and tools for managing your workspace. RStudio also makes it easier to organize your projects and share your work with others.R and RStudio are complementary, but they are not the same thing.</p>
-<p><strong>Git</strong> is a version control system that allows you to track changes to your code and collaborate with others. It is a powerful tool that can help you manage your projects more effectively and work more efficiently. Git is especially useful when working on a project with multiple people, as it allows you to keep track of who made what changes and when. Jenny Bryan calls it “the”Track Changes” feature from Microsoft Word on steriods” <a href="https://happygitwithr.com">(Happy Git, 2020)</a>.</p>
-<p><strong>GitHub</strong> is a web-based platform that allows you to host your Git repositories online. It provides a place for you to store your code, collaborate with others, and share your work with the world.</p>
-<section id="why-use-git-and-github" class="level2">
-<h2 class="anchored" data-anchor-id="why-use-git-and-github">Why Use Git and GitHub?</h2>
-<p>There are many reasons to use Git and GitHub in your projects.</p>
-<p>Here are a few of the key benefits:</p>
-<ul>
-<li><p><strong>Version Control</strong>: Git allows you to track changes to your code over time, so you can easily revert to an earlier version if needed.</p></li>
-<li><p><strong>Collaboration</strong>: Git makes it easy to work with others on a project, as it allows you to see who made what changes and when.</p></li>
-<li><p><strong>Backup</strong>: GitHub provides a secure place to store your code online, so you don’t have to worry about losing it if your computer crashes.</p></li>
-<li><p><strong>Portfolio</strong>: GitHub is a great place to showcase your work and build a portfolio of projects that you can share with potential employers or collaborators.</p></li>
-<li><p><strong>Reproducibility</strong>: Git and GitHub help you keep track of your code, data, and analysis, so you can reproduce your results and share them with others.</p></li>
-</ul>
-<p>Now, I hope I convinced you to start using Git and GitHub in your projects. So, let’s get you set up.</p>
-</section>
-</section>
-<section id="getting-set-up" class="level1">
-<h1>Getting Set Up</h1>
-<section id="register-a-github-account" class="level2">
-<h2 class="anchored" data-anchor-id="register-a-github-account">Register a GitHub account</h2>
+<section id="register-a-github-account" class="level1">
+<h1>Register a GitHub account</h1>
 <p>First, you need to sign up for a free account at <a href="https://github.com/">GitHub</a> using your work email. You will need to do this before moving on to connect your GitHub to your RStudio.</p>
-<section id="some-username-advice" class="level3">
-<h3 class="anchored" data-anchor-id="some-username-advice">Some Username Advice</h3>
+<section id="some-username-advice" class="level2">
+<h2 class="anchored" data-anchor-id="some-username-advice">Some Username Advice</h2>
 <p>Taken from <a href="https://happygitwithr.com/github-acct">Happy Git and GitHub for the useR.</a></p>
 <ul>
 <li><p>Incorporate your actual name! People like to know who they’re dealing with. Also makes your username easier for people to guess or remember.</p></li>
@@ -3141,28 +3117,28 @@ background: #CACACA;
 </ul>
 </section>
 </section>
-<section id="option-1-posit-cloud" class="level2">
-<h2 class="anchored" data-anchor-id="option-1-posit-cloud">Option 1: Posit Cloud</h2>
+<section id="option-1-posit-cloud" class="level1">
+<h1>Option 1: Posit Cloud</h1>
 <p>There is an <a href="https://posit.cloud/">online version</a> of RStudio that is provided by Posit, called Posit Cloud. This is an easy way to get started so you don’t have to worry about installation permissions, amongst other things. Also, Git is pre-installed in Posit Cloud and you won’t need to worry about installing it.</p>
 <p>All you need to do is sign up for a free account and you are ready to go. You can access your RStudio projects from any device with an internet connection.</p>
 </section>
-<section id="option-2-install-software-to-machine" class="level2">
-<h2 class="anchored" data-anchor-id="option-2-install-software-to-machine">Option 2: Install Software to Machine</h2>
-<section id="install-r-and-rstudio" class="level3">
-<h3 class="anchored" data-anchor-id="install-r-and-rstudio">Install R and RStudio</h3>
+<section id="option-2-install-software-to-machine" class="level1">
+<h1>Option 2: Install Software to Machine</h1>
+<section id="install-r-and-rstudio" class="level2">
+<h2 class="anchored" data-anchor-id="install-r-and-rstudio">Install R and RStudio</h2>
 <p>First, you need to have R and RStudio installed on your machine. This option is recommended if you are planning to work on projects offline.</p>
 <ul>
 <li><p>Download R for free from the <a href="https://cran.r-project.org/">Comprehensive R Archive Network</a> (CRAN). Once you selected your operating system, click on the “install R for the first time” link.</p></li>
 <li><p>Download RStudio for free from <a href="https://posit.co/download/rstudio-desktop/">Posit</a>. Once here, you will want to click “Download RStudio Desktop” under the 2: Install RStudio header.</p></li>
 </ul>
 </section>
-<section id="install-git" class="level3">
-<h3 class="anchored" data-anchor-id="install-git">Install Git</h3>
+<section id="install-git" class="level2">
+<h2 class="anchored" data-anchor-id="install-git">Install Git</h2>
 <p>Open RStudio on your machine, go to the Terminal, type the following, and then enter/return.</p>
 <p><code>git --version</code></p>
 <p>If you get a version number, then you are done. If instead, you see something like <code>git: command not found</code>, then you need to install it.</p>
-<section id="for-windows" class="level4">
-<h4 class="anchored" data-anchor-id="for-windows">For Windows</h4>
+<section id="for-windows" class="level3">
+<h3 class="anchored" data-anchor-id="for-windows">For Windows</h3>
 <p>Install <a href="https://git-for-windows.github.io/">Git for Windows</a>, also known as “Git Bash”.</p>
 <blockquote class="blockquote">
 <p>When install Git, please save the path to where it is being saved. It will save you a little extra time later. Note that RStudio for Windows prefers for Git to be installed below C:/Program Files and this appears to be the default. This implies, for example, that the Git executable on my Windows system is found at C:/Program Files/Git/bin/git.exe. It is recommended to follow this convention.</p>
@@ -3170,13 +3146,13 @@ background: #CACACA;
 <p>If you already have Git for Windows, but it’s not the latest version, it’s a good idea to update. If you have a version older than 2.45.1, it is <em>highly</em> advisable to upgrade. You can update like so from the Terminal:</p>
 <p><code>git update-git-for-windows</code></p>
 </section>
-<section id="for-macos" class="level4">
-<h4 class="anchored" data-anchor-id="for-macos">For macOS</h4>
+<section id="for-macos" class="level3">
+<h3 class="anchored" data-anchor-id="for-macos">For macOS</h3>
 <p>You may have noticed once you entered the command <code>git --version</code> in the Terminal, your machine elicited an offer to install developer command line tools. Accept the offer! Click on “Install”.</p>
 </section>
 </section>
-<section id="connect-with-git" class="level3">
-<h3 class="anchored" data-anchor-id="connect-with-git">Connect with Git</h3>
+<section id="connect-with-git" class="level2">
+<h2 class="anchored" data-anchor-id="connect-with-git">Connect with Git</h2>
 <p>After you went through the process to install everything to your machine, it’s time to connect Git to your RStudio and configure your GitHub account to your machine.</p>
 <p>First, in RStudio you want to go to the Tools &gt; Global Options &gt; Git/SVN. Under “Git executable” click browse and paste in the link to the folder Git was saved under.</p>
 <p>It may look something like:</p>
@@ -3185,8 +3161,8 @@ background: #CACACA;
 <p>If you didn’t save the path, go to the search bar by your start menu and type in “Git”. There are a few sections that will pop up with results. Look for git under the “Command” section and click the arrow on the right. There will be an option to open file location. If you end up in a folder <em>not</em> called bin, then click on the Git folder in the folder path.</p>
 </blockquote>
 <p>Once here, you will want to go to the bin folder and select the file “git.exe”. Click “Open”, then you will back back to the Global Options window and can click “OK”.</p>
-<section id="git-config" class="level4">
-<h4 class="anchored" data-anchor-id="git-config">Git Config</h4>
+<section id="git-config" class="level3">
+<h3 class="anchored" data-anchor-id="git-config">Git Config</h3>
 <p>Next, go to the Terminal, type the following, but with replacing with your user name from your GitHub account. Then press enter/return.</p>
 <p><code>git config --global user.name &quot;jane.doe&quot;</code></p>
 <p>Again in the Terminal, type the following, but with replacing with your email address from your GitHub account. Then press enter/return.</p>
@@ -3194,7 +3170,6 @@ background: #CACACA;
 <p>Finally, to check that everything is set up correctly, type the following in the Terminal and press enter/return.</p>
 <p><code>git config --global --list</code></p>
 <p>Congratulations! You are now set up to use Git with RStudio. Now you can move on to the next section to learn how to set up a new repository on GitHub and connect it to RStudio.</p>
-</section>
 </section>
 </section>
 </section>
