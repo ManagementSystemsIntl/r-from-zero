@@ -1,3 +1,3 @@
 # What is your favorite color?
-# Response: Yellow
+# Response: Purple
 
