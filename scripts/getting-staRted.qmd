@@ -10,6 +10,36 @@ format:
     smooth-scroll: true
 ---
 
+# Introduction
+
+This session is designed to help you get started with Git and GitHub in RStudio. But first, here's a little background on what these tools are and why you should use them in your projects.
+
+**R** is a programming language and software environment for statistical computing and graphics. It is widely used by statisticians, data scientists, and researchers to analyze data, create visualizations, and build models.
+
+**RStudio** is a powerful tool that makes it easier to write and run R code. It includes a console, a script editor, and tools for managing your workspace. RStudio also makes it easier to organize your projects and share your work with others.R and RStudio are complementary, but they are not the same thing.
+
+**Git** is a version control system that allows you to track changes to your code and collaborate with others. It is a powerful tool that can help you manage your projects more effectively and work more efficiently. Git is especially useful when working on a project with multiple people, as it allows you to keep track of who made what changes and when. Jenny Bryan calls it "the "Track Changes" feature from Microsoft Word on steriods" [(Happy Git, 2020)](https://happygitwithr.com).
+
+**GitHub** is a web-based platform that allows you to host your Git repositories online. It provides a place for you to store your code, collaborate with others, and share your work with the world.
+
+## Why Use Git and GitHub?
+
+There are many reasons to use Git and GitHub in your projects.
+
+Here are a few of the key benefits:
+
+-   **Version Control**: Git allows you to track changes to your code over time, so you can easily revert to an earlier version if needed.
+
+-   **Collaboration**: Git makes it easy to work with others on a project, as it allows you to see who made what changes and when.
+
+-   **Backup**: GitHub provides a secure place to store your code online, so you don't have to worry about losing it if your computer crashes.
+
+-   **Portfolio**: GitHub is a great place to showcase your work and build a portfolio of projects that you can share with potential employers or collaborators.
+
+-   **Reproducibility**: Git and GitHub help you keep track of your code, data, and analysis, so you can reproduce your results and share them with others.
+
+Now, I hope I convinced you to start using Git and GitHub in your projects. So, let's get you set up.
+
 # Register a GitHub account
 
 First, you need to sign up for a free account at [GitHub](https://github.com/) using your work email. You will need to do this before moving on to connect your GitHub to your RStudio.
@@ -36,7 +66,21 @@ Taken from [Happy Git and GitHub for the useR.](https://happygitwithr.com/github
 
 There is an [online version](https://posit.cloud/) of RStudio that is provided by Posit, called Posit Cloud. This is an easy way to get started so you don't have to worry about installation permissions, amongst other things. Also, Git is pre-installed in Posit Cloud and you won't need to worry about installing it.
 
-All you need to do is sign up for a free account and you are ready to go. You can access your RStudio projects from any device with an internet connection.
+## Connect with Git
+
+You may not need to install Git but you will still need to connect with Git. First, go to the Terminal, type the following, but with replacing with your user name from your GitHub account. Then press enter/return.
+
+`git config --global user.name "jane.doe"`
+
+Again in the Terminal, type the following, but with replacing with your email address from your GitHub account. Then press enter/return.
+
+`git config --global user.email "jane@example.com"`
+
+Finally, to check that everything is set up correctly, type the following in the Terminal and press enter/return.
+
+`git config --global --list`
+
+Congratulations! You are now set up to use Git with RStudio. Now you can move on to the next section to learn how to set up a new repository on GitHub and connect it to RStudio.
 
 # Option 2: Install Software to Machine
 
@@ -85,8 +129,6 @@ C:\Users\melanie.murphy\AppData\Local\Programs\Git
 > If you didn't save the path, go to the search bar by your start menu and type in "Git". There are a few sections that will pop up with results. Look for git under the "Command" section and click the arrow on the right. There will be an option to open file location. If you end up in a folder *not* called bin, then click on the Git folder in the folder path.
 
 Once here, you will want to go to the bin folder and select the file "git.exe". Click "Open", then you will back back to the Global Options window and can click "OK".
-
-### Git Config
 
 Next, go to the Terminal, type the following, but with replacing with your user name from your GitHub account. Then press enter/return.
 

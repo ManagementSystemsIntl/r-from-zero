@@ -10,43 +10,11 @@ format:
     smooth-scroll: true
 ---
 
-# Introduction
-
-This session is designed to help you get started with Git and GitHub in RStudio. It will guide you through the process of setting up Git and GitHub, creating a new repository, and connecting it to RStudio. By the end of this session, you will be able to use Git and GitHub to manage your projects more effectively and collaborate with others.
-
-But first, let's provide a little background on what these tools are and why you should use them in your projects.
-
-**R** is a programming language and software environment for statistical computing and graphics. It is widely used by statisticians, data scientists, and researchers to analyze data, create visualizations, and build models.
-
-**RStudio** is a powerful tool that makes it easier to write and run R code. It includes a console, a script editor, and tools for managing your workspace. RStudio also makes it easier to organize your projects and share your work with others.R and RStudio are complementary, but they are not the same thing.
-
-**Git** is a version control system that allows you to track changes to your code and collaborate with others. It is a powerful tool that can help you manage your projects more effectively and work more efficiently. Git is especially useful when working on a project with multiple people, as it allows you to keep track of who made what changes and when. Jenny Bryan calls it "the "Track Changes" feature from Microsoft Word on steriods" [(Happy Git, 2020)](https://happygitwithr.com).
-
-**GitHub** is a web-based platform that allows you to host your Git repositories online. It provides a place for you to store your code, collaborate with others, and share your work with the world.
-
-## Why Use Git and GitHub?
-
-There are many reasons to use Git and GitHub in your projects.
-
-Here are a few of the key benefits:
-
--   **Version Control**: Git allows you to track changes to your code over time, so you can easily revert to an earlier version if needed.
-
--   **Collaboration**: Git makes it easy to work with others on a project, as it allows you to see who made what changes and when.
-
--   **Backup**: GitHub provides a secure place to store your code online, so you don't have to worry about losing it if your computer crashes.
-
--   **Portfolio**: GitHub is a great place to showcase your work and build a portfolio of projects that you can share with potential employers or collaborators.
-
--   **Reproducibility**: Git and GitHub help you keep track of your code, data, and analysis, so you can reproduce your results and share them with others.
-
-Now, I hope I convinced you to start using Git and GitHub in your projects. So, let's get you set up.
-
 # The Beginnings with Git
 
-In this section, we will cover creating a new repository in GitHub, connecting a repository to RStudio, the ins and outs of Git commands and how to properly set up your folder structure for your project. These are the beginning steps in getting started with Git.
+In this section, we will cover creating a new repository in GitHub, connecting a repository to RStudio, the ins and outs of Git commands. These are the beginning steps in getting started with Git.
 
-## Create a New Repository
+# Creating a New Repository
 
 Follow the steps below to create a new repository on GitHub.
 
@@ -62,9 +30,9 @@ Follow the steps below to create a new repository on GitHub.
 
 6.  Click on "Create repository".
 
-## Create a New Project
+# Creating a New Project
 
-### Posit Cloud
+## Posit Cloud
 
 Follow the steps below to connect your GitHub repository to RStudio online.
 
@@ -78,7 +46,7 @@ Follow the steps below to connect your GitHub repository to RStudio online.
 
 5.  Click on this option and you will be prompted to enter the URL of the repository you want to clone.
 
-6.  Copy the URL from the repository you created on GitHub and paste it in the box. Click "OK".
+6.  Copy the URL at the top of your broswer when in the the repository you created on GitHub and paste it in the box. Click "OK".
 
 An example URL will look like:
 
@@ -88,7 +56,7 @@ https://github.com/ManagementSystemsIntl/r-from-zero
 
 Success! Now that your project is set up, you can start working on your analysis and commit your changes to GitHub.
 
-### RStudio Desktop Version
+## RStudio Desktop Version
 
 When you have a repository you want to clone to your machine, you will create a new project in RStudio and connect it to the GitHub repository.
 
@@ -106,9 +74,31 @@ When you have a repository you want to clone to your machine, you will create a 
 
 Success! Now that your project is set up, you can start working on your analysis and commit your changes to GitHub.
 
-## A Few Things About Git
+# Creating a Personal Access Token
 
-### A Note on Committing
+When you are using Git with Posit Cloud, you will need to create a personal access token to authenticate your GitHub account. This is a security measure to protect your account. Follow the steps below to create a personal access token.
+
+1.  Go to your GitHub account and click on your profile picture in the top right corner.
+
+2.  Click on "Settings".
+
+3.  Click on "Developer settings" at the very bottom of the left pane.
+
+4.  Click on "Personal access tokens", then "Tokens (classic)".
+
+5.  Click on "Generate new token", then "Generate new token (classic).
+
+6.  Enter a name for your token and select the scopes you want to grant access to. We recommend scopes “repo”, “workflow”, “gist”, “user”, and "projects". If you’re not sure what scopes you need, you can start with these and adjust as needed.
+
+7.  Click on "Generate token".
+
+8.  Copy the token and save it in a secure place. You will need it to authenticate your GitHub account in RStudio when you push changes to GitHub. If you lose the token, you will need to create a new one so keep the browser open until it is stored in a secure place.
+
+> GitHub encourages the use of perishable tokens, with a default Expiration period of 30 days. Unless you have a specific reason to fight this, we recommend accepting this default.
+
+# A Few Things About Git
+
+## A Note on Committing
 
 When you make changes to your project, you will need to commit them to Git then push them to GitHub. This is like taking a snapshot of your project at a particular point in time.
 
@@ -126,11 +116,13 @@ To commit your changes, follow these steps:
 
 5.  Finally, click “Push” to send the changes to GitHub.
 
+6.  If you are working in Posit Cloud, on your first push in the project you will be prompted to enter your Github user name, then password. The password will be the personal access token you created earlier. 
+
 There are a few files that do *not* need to be committed to Git. These include .gitignore and .Rproj files. The .gitignore file tells Git which files to ignore when committing changes. The .Rproj file is specific to RStudio and should not be committed to Git.
 
 **Best practice is to pull at the beginning of your work session and commit then push your changes at the end of each work session.**
 
-### A Note on Commit Messages
+## A Note on Commit Messages
 
 A general rule of thumb is to commit then push your changes often and write clear commit messages. This will make it easier to track your progress and collaborate with others.
 
