@@ -1,2 +1,2 @@
 # What is your favorite color?
-# Response:
+# Response: Blue
