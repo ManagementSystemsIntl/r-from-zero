@@ -4,7 +4,7 @@
 # Run source file ----
 source("week 1/scripts/00 prep.R")
 
-# Expore dataset ----
+# Explore dataset ----
 
 # Review properties of data
 glimpse(raw) # 100 observations
@@ -47,7 +47,7 @@ frq(consented$consent) # 91 consented, sample for the rest of the survey is 91 r
 
 # sex -----
 frq(raw$sex) 
-# ERROR: One sex response missing
+# ERROR: One sex response missing, need to require question
 
 # age ----
 frq(raw$age) # Only 5 NAs, when there should be 9

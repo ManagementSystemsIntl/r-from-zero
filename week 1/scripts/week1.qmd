@@ -11,12 +11,17 @@ format:
     smooth-scroll: true
 ---
 
-```{r, echo=FALSE}
-# install packages
-base_packages <- install.packages(c("dplyr","readxl", "tidyr", "purrr", "knitr", "rmarkdown", "readr", "sjmisc", "sjPlot"),repos = "http://cran.us.r-project.org")
+```{r, echo=FALSE, include = FALSE}
 
-# load library of packages
-lapply(base_packages, library, character.only=T)
+library(dplyr)
+library(purrr)
+library(readxl)
+library(sjmisc)
+library(sjPlot)
+library(tidyr)
+library(knitr)
+library(rmarkdown)
+library(readr)
 ```
 
 # Introduction
@@ -25,9 +30,9 @@ This series is designed to help participants build a solid foundation in R progr
 
 Note, participants should have already created a GitHub account and installed RStudio on their machine or set up with Posit Cloud. If you missed our previous session on getting set up in R, please review the step-by-step guides and recording [saved here](https://msiworldwide.egnyte.com/fl/wJHfQhg9Q7).
 
-Completing those sessions is required to continue successfully in the series. Please reach out if you need any support!
+Completing those sessions is required to continue successfully in the series. However, getting the repository cloned to your workspace or machine is not required! Feel free to create your own project for this training and save all the files we share there. Please reach out if you need any support!
 
-Before we jump in, please do a pull to update your workspace with items that have been pushed to the repository. Under the participant files, please go ahead and create a new folder for your scripts.
+If you are working in the repository, please do a pull to update your workspace with items that have been pushed to the repository. Under the participant files, please go ahead and create a new folder for your scripts.
 
 # Session 1: Loading and Exploring Data
 
@@ -65,8 +70,10 @@ The common folders used for an analysis task are:
 
 6.  A "reports" folder to store any reports or presentations related the task.
 
-:::: box
+::::: box
+::: box-header
 Data Analysis Workflow
+:::
 
 ::: box-container
 The data science team has developed a workflow that has proven effective for our data analysis activities. We utilize R scripts, R Markdowns or Quarto Documents to create files for each step in the workflow. The common steps the data science team uses are:
@@ -83,7 +90,7 @@ The data science team has developed a workflow that has proven effective for our
 
 This is the core structure of a data analysis workflow but can be adapted to fit the needs of your analysis activity.
 :::
-::::
+:::::
 
 # Installing and Loading Packages
 
@@ -95,17 +102,17 @@ One of the key things you want to include in the prep script are packages needed
 
 `install.packages("dplyr")`
 
-After installation, to make the functions and datasets of a package available in your R session, you need to load the package using the `library()` function:
+After installation, to make the functions and datasets of a package available in your R session, you need to load the package using the `library()` function: `library(dplyr)`
 
-`library(dplyr)`
-
-There are more than one package needed for this session, and there generally is for any analytical activity. Thankfully, you don't have to install each package one at a time. You can use the `c()` function to combine several values or objects into a vector which allows us to use the function only one time.
+There are more than one package needed for this session, and there generally is for any analytical activity. Thankfully, you don't have to install each package one at a time. You can use the `c()` function to combine several values or objects into a vector which allows us to use the function only one time. Please add these lines of code to your 00 prep script. Remember to add notes as you go (`#` comment) so you can notate your workflow.
 
 **Install required packages:**
 
-`install.packages(c("purrr", "readxl", "sjmisc", "sjPlot"))`
+`install.packages(c(``"dplyr",``"purrr", "readxl", "sjmisc", "sjPlot"))`
 
 **Load libraries:**
+
+`library(dplyr)`
 
 `library(purrr)`
 
@@ -128,7 +135,7 @@ An example of a working directory is, `setwd("C:/Users/melanie.murphy/Desktop/R 
 Now, we want to assign the dataset to the object named "raw" since this is the raw dataset. This creates an object called "raw" in the top right of your screen in the Environment.
 
 ```{r}
-raw <- read_xlsx("C:/Users/melanie.murphy/Desktop/R projects/r-from-zero/week 1/data/datatest.xlsx")
+raw <- read.csv("week 1/data/dataset.csv")
 ```
 
 > In general, we usually create the object of the current dataset to the 00 prep file. As you get further into your analysis process, the name of the object and the file you use will change. More on that later.
@@ -177,7 +184,7 @@ There are a few key functions you could use when conducting a review on the raw 
 filtered_data <- raw %>% 
   filter(consent == "Yes")
 
-filtered_data
+head(filtered_data)
 ```
 
 You can also filter with numeric values such as age.
@@ -185,6 +192,8 @@ You can also filter with numeric values such as age.
 ```{r}
 under_retireage <- raw %>% 
   filter(age<62)
+
+head(under_retireage)
 ```
 
 `select()`: This function allows you to subset columns in a dataset. This is useful when you want to focus on specific variables for your analysis.
@@ -193,10 +202,19 @@ under_retireage <- raw %>%
 questionsA <- raw %>% 
   select(ID:employment)
 
-questionsA
+head(questionsA)
 ```
 
-`summarize()`: This function manipulates observations based on the value of one or more variables. It is often used to calculate summary statistics such as means, counts, or proportions.
+You can also select the variables this way!
+
+```{r}
+questionsB <- raw %>% 
+  select(consent, registered, received_assistance, satisfaction, dissatisfied_reason, quantity,      quality)
+
+head(questionsB)
+```
+
+`summarize()`: This function manipulates observations based on the value of one or more variables. It is often used to calculate summary statistics such as means, counts, or proportions. Note, `na.rm = TRUE` means you want to exclude the NAs when it calculates the mean.
 
 ```{r}
 age_mn <- raw %>% 
@@ -205,34 +223,34 @@ age_mn <- raw %>%
 age_mn
 ```
 
-`frq()`: This function is typically used to generate frequency tables for categorical variables, allowing you to see how many times each category appears in the dataset.
+`frq()`: This function is typically used to generate frequency tables for categorical variables, allowing you to see how many times each category appears in the dataset. In my opinion, this is the easiest function to use when conducting frequency checks.
 
 ```{r}
 frq(raw$education)
 ```
 
-`map()`: This function from the purrr package allows you to apply a function to each element of a list or vector. It is useful for applying the same function (like frq()) to multiple variables in your dataset.
+`map()`: This function from the purrr package allows you to apply a function to each element of a list or vector. It is useful for applying the same function (like `frq()`) to multiple variables in your dataset. Another one of my favorites.
 
 ```{r}
-map(questionsA[2:7], frq)
+map(questionsB, frq)
 ```
 
-`tab_xtab()`: This function is used to create cross-tabulations between two categorical variables, allowing you to examine the relationship between them. It can provide insights into how different groups interact.
+`tab_xtab()`: This function is used to create cross-tabulations between two categorical variables, allowing you to examine the relationship between them.
 
-```{r}
+```{r, warning=FALSE}
 tab_xtab(raw$employment, 
          raw$sex)
 ```
 
-`table()`: This base R function creates a contingency table of counts for categorical variables. It is a simple way to get a quick overview of the distribution of a variable.
+`table()`: This base R function creates a contingency table of counts for categorical variables. It is a simple way to get another overview of the distribution of a variable.
 
 ```{r}
 table(raw$received_assistance)
 ```
 
-# Breakouts
+# Practice Script
 
-For the breakouts, each group will be given a set of questions from a fake survey and corresponding data. Participants should use the common functions above to find as many errors in the dataset as you can!
+For practice, we are sharing a script that contains a fake survey and corresponding data. Participants should use the common functions above to find as many errors in the dataset as you can!
 
 Through these "frequency checks", you will be able to identify errors that need to be fix in the computer-assisted personal interviewing (CAPI) before data collection starts. Thankfully, this is the pilot data and we still have time to fix them!
 
@@ -243,3 +261,5 @@ Through these "frequency checks", you will be able to identify errors that need 
 -   Mistakes in skip logic and question type
 
 -   Failures of logic tests (not skip logic but expected social values such as combinations of age, education, employment, etc)
+
+Please drop any questions in our [Teams Channel](https://teams.microsoft.com/l/channel/19%3Acab5251c965a4b15bc0b8d99fb1ac157%40thread.tacv2/R%20from%20Zero%20Training%20Series%20-%202025?groupId=175a191b-5543-4fc0-81db-926ead8863f1&tenantId=a40fe4ba-abc7-48fe-8792-b43889936400) if you need support! Good luck!
