@@ -11,11 +11,15 @@
 
 # sex
 
-# Age
+# age
 
-# Education
+# education
+# What is your highest level of education?
+# Responses: No formal education, High School, Bachelor's, Master's, PhD
 
-# Employment
+# employment
+# What is your current employment status?
+# Responses: Unemployment, Employed, Retired, Student
 
 
 # Frequency Review ----

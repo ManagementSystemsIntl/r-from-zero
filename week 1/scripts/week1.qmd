@@ -13,7 +13,7 @@ format:
 
 ```{r, echo=FALSE}
 # install packages
-base_packages <- install.packages(c("dplyr","readxl", "tidyr", "purrr", "knitr", "rmarkdown", "readr", "sjmisc"),repos = "http://cran.us.r-project.org")
+base_packages <- install.packages(c("dplyr","readxl", "tidyr", "purrr", "knitr", "rmarkdown", "readr", "sjmisc", "sjPlot"),repos = "http://cran.us.r-project.org")
 
 # load library of packages
 lapply(base_packages, library, character.only=T)
@@ -103,7 +103,7 @@ There are more than one package needed for this session, and there generally is 
 
 **Install required packages:**
 
-`install.packages(c("purrr", "readxl", "sjmisc"))`
+`install.packages(c("purrr", "readxl", "sjmisc", "sjPlot"))`
 
 **Load libraries:**
 
@@ -112,6 +112,8 @@ There are more than one package needed for this session, and there generally is 
 `library(readxl)`
 
 `library(sjmisc)`
+
+`library(sjPlot)`
 
 # Loading the Data
 
@@ -173,7 +175,7 @@ There are a few key functions you could use when conducting a review on the raw 
 
 ```{r}
 filtered_data <- raw %>% 
-  filter(Consent == "Yes")
+  filter(consent == "Yes")
 
 filtered_data
 ```
@@ -181,38 +183,42 @@ filtered_data
 `select()`: This function allows you to subset columns in a dataset. This is useful when you want to focus on specific variables for your analysis.
 
 ```{r}
-selected_data <- raw %>% 
-  select(age, gender, income)
+questionsA <- raw %>% 
+  select(ID:employment)
+
+questionsA
 ```
 
-summarize(): This function manipulates observations based on the value of one or more variables. It is often used to calculate summary statistics such as means, counts, or proportions.
+`summarize()`: This function manipulates observations based on the value of one or more variables. It is often used to calculate summary statistics such as means, counts, or proportions.
 
 ```{r}
-summary_data <- raw %>% 
+age_mn <- raw %>% 
   summarize(mean_age = mean(age, na.rm = TRUE))
+
+age_mn
 ```
 
-frq(): This function is typically used to generate frequency tables for categorical variables, allowing you to see how many times each category appears in the dataset.
+`frq()`: This function is typically used to generate frequency tables for categorical variables, allowing you to see how many times each category appears in the dataset.
 
 ```{r}
-frq(raw$Sex)
+frq(raw$education)
 ```
 
-map(): This function from the purrr package allows you to apply a function to each element of a list or vector. It is useful for applying the same function (like frq()) to multiple variables in your dataset.
+`map()`: This function from the purrr package allows you to apply a function to each element of a list or vector. It is useful for applying the same function (like frq()) to multiple variables in your dataset.
 
 ```{r}
-map(raw[c("sex", "age_group", "income_level")], frq)
+map(questionsA[2:7], frq)
 ```
 
-tab_xtab(): This function is used to create cross-tabulations between two categorical variables, allowing you to examine the relationship between them. It can provide insights into how different groups interact.
+`tab_xtab()`: This function is used to create cross-tabulations between two categorical variables, allowing you to examine the relationship between them. It can provide insights into how different groups interact.
 
 ```{r}
-tab_xtab(raw$gender, 
-         raw$income_level)
+tab_xtab(raw$employment, 
+         raw$sex)
 ```
 
-table(): This base R function creates a contingency table of counts for categorical variables. It is a simple way to get a quick overview of the distribution of a variable.
+`table()`: This base R function creates a contingency table of counts for categorical variables. It is a simple way to get a quick overview of the distribution of a variable.
 
 ```{r}
-table(raw$age_group)
+table(raw$received_assistance)
 ```
