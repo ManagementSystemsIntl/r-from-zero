@@ -180,6 +180,13 @@ filtered_data <- raw %>%
 filtered_data
 ```
 
+You can also filter with numeric values such as age.
+
+```{r}
+under_retireage <- raw %>% 
+  filter(age<62)
+```
+
 `select()`: This function allows you to subset columns in a dataset. This is useful when you want to focus on specific variables for your analysis.
 
 ```{r}
@@ -222,3 +229,17 @@ tab_xtab(raw$employment,
 ```{r}
 table(raw$received_assistance)
 ```
+
+# Breakouts
+
+For the breakouts, each group will be given a set of questions from a fake survey and corresponding data. Participants should use the common functions above to find as many errors in the dataset as you can!
+
+Through these "frequency checks", you will be able to identify errors that need to be fix in the computer-assisted personal interviewing (CAPI) before data collection starts. Thankfully, this is the pilot data and we still have time to fix them!
+
+**Things to look out for:**
+
+-   Implausible or suspicious values
+
+-   Mistakes in skip logic and question type
+
+-   Failures of logic tests (not skip logic but expected social values such as combinations of age, education, employment, etc)

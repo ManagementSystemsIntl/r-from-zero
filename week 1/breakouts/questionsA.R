@@ -24,7 +24,6 @@
 
 # Frequency Review ----
 # check for the following: 
-# values out of range
 # implausible or suspicious values
 # mistakes in skip logic and question type
 # failures of logic tests (not skip logic but expected social values

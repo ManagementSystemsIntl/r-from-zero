@@ -12,7 +12,7 @@
 # Responses: Yes, No
 
 # satisfaction
-# Were you satisfied with the assistance received? 
+# If you received assistance, were you satisfied with the assistance received? 
 # Responses: Very dissatisfied, Somewhat dissatisfied, Somewhat satisfied, Very satisfied
 
 # dissatisfied_reason
@@ -20,17 +20,16 @@
 # Responses: Wait too long, Quality, Limited variety
 
 # quantity
-# Did you receive the correct number of items?
+# If you received assistance, did you receive the correct number of items?
 # Responses: Yes, No
 
 # quality
-# How would you rate the quality of the items received? 
+# If you received assistance, how would you rate the quality of the items received? 
 # Responses: Poor, Ok, Great
 
 
 # Frequency Review ----
 # check for the following: 
-# values out of range
 # implausible or suspicious values
 # mistakes in skip logic and question type
 # failures of logic tests (not skip logic but expected social values
