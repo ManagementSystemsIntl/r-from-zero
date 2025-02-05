@@ -11,6 +11,14 @@ format:
     smooth-scroll: true
 ---
 
+```{r, echo=FALSE}
+# install packages
+base_packages <- install.packages(c("dplyr","readxl", "tidyr", "purrr", "knitr", "rmarkdown", "readr", "sjmisc"),repos = "http://cran.us.r-project.org")
+
+# load library of packages
+lapply(base_packages, library, character.only=T)
+```
+
 # Introduction
 
 This series is designed to help participants build a solid foundation in R programming, regardless of their current skill level. Throughout the training series, we will connect each session to steps in the data analysis workflow.
@@ -19,7 +27,7 @@ Note, participants should have already created a GitHub account and installed RS
 
 Completing those sessions is required to continue successfully in the series. Please reach out if you need any support!
 
-Before we jump in, please do a pull to update your workspace with items that have been pushed to the repository. Under the scripts/participant scripts, please go ahead and create a new folder for your scripts.
+Before we jump in, please do a pull to update your workspace with items that have been pushed to the repository. Under the participant files, please go ahead and create a new folder for your scripts.
 
 # Session 1: Loading and Exploring Data
 
@@ -81,29 +89,29 @@ This is the core structure of a data analysis workflow but can be adapted to fit
 
 When you start an analysis activity, the first script you will create would be your prep script (as mentioned above). This script will eventually be used for a `source()` function in other scripts in the workflow process to read and execute R code from that file. We will get to all this later.
 
-> To create a new script, go to the green plus sign on the upper left of the screen and select R Script. Go ahead and save this file as "00 prep" in the folder you created for yourself under participant scripts.
+> To create a new script, go to the green plus sign on the upper left of the screen and select R Script. Go ahead and save this file as "00 prep" in the folder you created for yourself under participant files
 
 One of the key things you want to include in the prep script are packages needed for your analysis. The first time you use a package in R you have to install it. This is done by using the `install.packages()` function, where you specify the name of the package as a string. For example, to install the dplyr package, you would use:
 
-```{r}
-install.packages("dplyr")
-```
+`install.packages("dplyr")`
 
 After installation, to make the functions and datasets of a package available in your R session, you need to load the package using the `library()` function:
 
-```{r}
-library(dplyr)
-```
+`library(dplyr)`
 
-There are more than one package needed for this session, and there generally is for any analytical activity. Thankfully, you don't have to run the previous lines of code for each package. You can use the `c()` function to combine several values or objects into a vector which allows us to use the previous functions only one time.
+There are more than one package needed for this session, and there generally is for any analytical activity. Thankfully, you don't have to install each package one at a time. You can use the `c()` function to combine several values or objects into a vector which allows us to use the function only one time.
 
-```{r}
-# install packages
-install.packages(c("readxl", "tidyr", "purrr", "knitr", "rmarkdown"))
+**Install required packages:**
 
-# load library of packages
-library(c(readxl, tidyr, purrr, knitr, rmarkdown))
-```
+`install.packages(c("purrr", "readxl", "sjmisc"))`
+
+**Load libraries:**
+
+`library(purrr)`
+
+`library(readxl)`
+
+`library(sjmisc)`
 
 # Read Data
 
@@ -122,7 +130,7 @@ Now, we want to assign the dataset to the object named "raw" since this is the r
 
 ```{r}
 # Create an object for the dataset
-raw <- read_xlsx("datatest.xlsx")
+raw <- read_xlsx("data/week 1/datatest.xlsx")
 ```
 
 # What data types are we working with?
