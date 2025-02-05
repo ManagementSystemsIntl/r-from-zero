@@ -1,0 +1,172 @@
+---
+title: "Loading and Exploring Data"
+subtitle: R from Zero Training Series - Session 1
+title-block-banner: "#CACACA"
+format: 
+  html:
+    code-fold: false
+    css: styles.css
+    toc: true
+    embed-resources: true
+    smooth-scroll: true
+---
+
+# Introduction
+
+This series is designed to help participants build a solid foundation in R programming, regardless of their current skill level. Throughout the training series, we will connect each session to steps in the data analysis workflow.
+
+Note, participants should have already created a GitHub account and installed RStudio on their machine or set up with Posit Cloud. If you missed our previous session on getting set up in R, please review the step-by-step guides and recording [saved here](https://msiworldwide.egnyte.com/fl/wJHfQhg9Q7).
+
+Completing those sessions is required to continue successfully in the series. Please reach out if you need any support!
+
+Before we jump in, please do a pull to update your workspace with items that have been pushed to the repository. Under the scripts/participant scripts, please go ahead and create a new folder for your scripts.
+
+# Session 1: Loading and Exploring Data
+
+Now, to kick off this series, we will cover loading and exploring a dataset in R. In this session, we will focus on the initial steps necessary to ensure you are working with a clean dataset.
+
+In this session, we will cover:
+
+-   Ideal Folder Structure
+
+-   Installing and loading packages
+
+-   Setting the working directory
+
+-   Loading data and creating objects
+
+-   Basic functions to explore data
+
+# Ideal Folder Structure
+
+When preparing for an analysis it is essentially to develop a proper folder structure as well as a proper workflow for your analysis. A well-organized folder structure helps maintain clarity throughout your analysis process.
+
+> Reproducibility should be the cornerstone of any data analysis workflow. This means that anyone should be able to replicate your results using the same data and methods.
+
+The common folders used for an analysis task are:
+
+1.  A "data" folder to store data files, with subfolders for each type of data, such as raw, cleaned and prepared.
+
+2.  A "scripts" folder to store R scripts.
+
+3.  An "output" folder to store plots, figures and tables, with subfolders for each type of relevant output (e.g., "viz","tables", "models").
+
+4.  A "background docs" folder to store any background documentation or literature reviews.
+
+5.  An "instruments" folder to store any instruments or questionnaires used.
+
+6.  A "reports" folder to store any reports or presentations related the task.
+
+:::: box
+Data Analysis Workflow
+
+::: box-container
+The data science team has developed a workflow that has proven effective for our data analysis activities. We utilize R scripts, R Markdowns or Quarto Documents to create files for each step in the workflow. The common steps the data science team uses are:
+
+00 prep - sets the stage for the analysis, installs packages, loads libraries, sets themes and colors, creates labels, creates the dataset objects and more.
+
+01 clean - reviews the dataset to check for missing values, errors, anomalies in the data, as well as making small adjustments to address any identified issues.
+
+02 prepared - involves transformation techniques to create new variables that are needed for analysis.
+
+03 explore - uses exploratory data analysis techniques to understand the data's structure, patterns, and relationships.
+
+04 analysis - applies statistical methods and models to draw insights from the data.
+
+This is the core structure of a data analysis workflow but can be adapted to fit the needs of your analysis activity.
+:::
+::::
+
+# Installing and Loading Packages
+
+When you start an analysis activity, the first script you will create would be your prep script (as mentioned above). This script will eventually be used for a `source()` function in other scripts in the workflow process to read and execute R code from that file. We will get to all this later.
+
+> To create a new script, go to the green plus sign on the upper left of the screen and select R Script. Go ahead and save this file as "00 prep" in the folder you created for yourself under participant scripts.
+
+One of the key things you want to include in the prep script are packages needed for your analysis. The first time you use a package in R you have to install it. This is done by using the `install.packages()` function, where you specify the name of the package as a string. For example, to install the dplyr package, you would use:
+
+```{r}
+install.packages("dplyr")
+```
+
+After installation, to make the functions and datasets of a package available in your R session, you need to load the package using the `library()` function:
+
+```{r}
+library(dplyr)
+```
+
+There are more than one package needed for this session, and there generally is for any analytical activity. Thankfully, you don't have to run the previous lines of code for each package. You can use the `c()` function to combine several values or objects into a vector which allows us to use the previous functions only one time.
+
+```{r}
+# install packages
+install.packages(c("readxl", "tidyr", "purrr", "knitr", "rmarkdown"))
+
+# load library of packages
+library(c(readxl, tidyr, purrr, knitr, rmarkdown))
+```
+
+# Read Data
+
+Now that the packages are loaded, we can read the data and add it into the environment. When the data is stored in our local files, we can call the file using the appropriate file path. First, it is important to set your home working directory, and then call the file name.
+
+> R is capable of reading data in many formats, but the user has to know what the format of the file is and where the file is stored.
+
+Set a working directory by using the `setwd()` function or go to Session/Set Working Directory/To Project Directory. If you are working in Posit Cloud, the default is `setwd("/cloud/project")`
+
+```{r}
+# Set working directory
+setwd("C:/Users/melanie.murphy/Desktop/R projects/r-from-zero")
+```
+
+Now, we want to assign the dataset to the object named "raw" since this is the raw dataset. This creates an object called "raw" in the top right of your screen in the Environment.
+
+```{r}
+# Create an object for the dataset
+raw <- read_xlsx("datatest.xlsx")
+```
+
+# What data types are we working with?
+
+Let’s look closer at raw. We’re going to do this in 3 ways, glimpse(), str(), and head(). Let’s observe the differences in each of the outputs.
+
+Get to know the data you’ll be working with.
+
+```{r}
+names(dat)
+```
+
+Now let’s take a look at the first few rows of our data.
+
+```{r}
+head()
+```
+
+We can look at some of the properties of our data using glimpse()
+
+```{r}
+glimpse(dat)
+```
+
+# Explore the Data
+
+filter: subsets rows
+
+select: subsets columns
+
+summarize: manipulates observations based on the value of a variable or variables.
+
+frq:
+
+map:
+
+tab_xtab:
+
+table:
+
+```{r}
+
+
+
+
+
+```
