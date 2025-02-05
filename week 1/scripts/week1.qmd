@@ -77,7 +77,7 @@ The data science team has developed a workflow that has proven effective for our
 
 02 prepared - involves transformation techniques to create new variables that are needed for analysis.
 
-03 explore - uses exploratory data analysis techniques to understand the data's structure, patterns, and relationships.
+03 explore - uses exploratory data analysis (EDA) techniques to understand the data's structure, patterns, and relationships.
 
 04 analysis - applies statistical methods and models to draw insights from the data.
 
@@ -113,7 +113,7 @@ There are more than one package needed for this session, and there generally is 
 
 `library(sjmisc)`
 
-# Read Data
+# Loading the Data
 
 Now that the packages are loaded, we can read the data and add it into the environment. When the data is stored in our local files, we can call the file using the appropriate file path. First, it is important to set your home working directory, and then call the file name.
 
@@ -121,60 +121,98 @@ Now that the packages are loaded, we can read the data and add it into the envir
 
 Set a working directory by using the `setwd()` function or go to Session/Set Working Directory/To Project Directory. If you are working in Posit Cloud, the default is `setwd("/cloud/project")`
 
-```{r}
-# Set working directory
-setwd("C:/Users/melanie.murphy/Desktop/R projects/r-from-zero")
-```
+An example of a working directory is, `setwd("C:/Users/melanie.murphy/Desktop/R projects/r-from-zero")`
 
 Now, we want to assign the dataset to the object named "raw" since this is the raw dataset. This creates an object called "raw" in the top right of your screen in the Environment.
 
 ```{r}
-# Create an object for the dataset
-raw <- read_xlsx("data/week 1/datatest.xlsx")
+raw <- read_xlsx("C:/Users/melanie.murphy/Desktop/R projects/r-from-zero/week 1/data/datatest.xlsx")
 ```
 
-# What data types are we working with?
-
-Let’s look closer at raw. We’re going to do this in 3 ways, glimpse(), str(), and head(). Let’s observe the differences in each of the outputs.
-
-Get to know the data you’ll be working with.
-
-```{r}
-names(dat)
-```
-
-Now let’s take a look at the first few rows of our data.
-
-```{r}
-head()
-```
-
-We can look at some of the properties of our data using glimpse()
-
-```{r}
-glimpse(dat)
-```
+> In general, we usually create the object of the current dataset to the 00 prep file. As you get further into your analysis process, the name of the object and the file you use will change. More on that later.
 
 # Explore the Data
 
-filter: subsets rows
+But not the kind of exploring I previously mentioned where we are conducting EDA. Here we will look at the raw dataset in a few different ways to get an idea of what we are working with.
 
-select: subsets columns
+> Before we get into that, create a another script and save this file as "01 clean" in the folder you created for yourself under participant files. We will finish the session in this file.
 
-summarize: manipulates observations based on the value of a variable or variables.
-
-frq:
-
-map:
-
-tab_xtab:
-
-table:
+First, let's look at some of the properties of our data using `glimpse()`
 
 ```{r}
+glimpse(raw)
+```
 
+Now let’s take a look at the first few rows of our data using `head()`
 
+```{r}
+head(raw)
+```
 
+Then the last rows using `tail()`
 
+```{r}
+tail(raw)
+```
 
+Finally, we can look at the variable names in the dataset using `names()`
+
+```{r}
+names(raw)
+```
+
+# Frequency Review
+
+Before the analysis begins, we need to verify that the data are accurate and that the variables are properly labelled, have the correct values, have proper data types, etc. This is what we will focus on for the rest of this session.
+
+> It is important to work in opportunities to conduct this review before receiving the final dataset. Whether from a household survey or third-party monitoring data, it is very important to conduct a pilot test or test the tool yourself to ensure you capture errors early on. By the time you receive the final dataset, there shouldn't be any substantial errors like the ones we will cover. But these are the types of errors you may find during the pilot or testing phase.
+
+There are a few key functions you could use when conducting a review on the raw dataset.
+
+`filter()`: This function is used to subset rows in a dataset based on specific conditions. For example, you might want to filter out responses from participants who did not consent to the survey.
+
+```{r}
+filtered_data <- raw %>% 
+  filter(Consent == "Yes")
+
+filtered_data
+```
+
+`select()`: This function allows you to subset columns in a dataset. This is useful when you want to focus on specific variables for your analysis.
+
+```{r}
+selected_data <- raw %>% 
+  select(age, gender, income)
+```
+
+summarize(): This function manipulates observations based on the value of one or more variables. It is often used to calculate summary statistics such as means, counts, or proportions.
+
+```{r}
+summary_data <- raw %>% 
+  summarize(mean_age = mean(age, na.rm = TRUE))
+```
+
+frq(): This function is typically used to generate frequency tables for categorical variables, allowing you to see how many times each category appears in the dataset.
+
+```{r}
+frq(raw$Sex)
+```
+
+map(): This function from the purrr package allows you to apply a function to each element of a list or vector. It is useful for applying the same function (like frq()) to multiple variables in your dataset.
+
+```{r}
+map(raw[c("sex", "age_group", "income_level")], frq)
+```
+
+tab_xtab(): This function is used to create cross-tabulations between two categorical variables, allowing you to examine the relationship between them. It can provide insights into how different groups interact.
+
+```{r}
+tab_xtab(raw$gender, 
+         raw$income_level)
+```
+
+table(): This base R function creates a contingency table of counts for categorical variables. It is a simple way to get a quick overview of the distribution of a variable.
+
+```{r}
+table(raw$age_group)
 ```
