@@ -13,9 +13,6 @@ library(sjPlot)
 library(readr)
 library(flextable)
 
-# Set working directory
-setwd("C:/Users/melanie.murphy/Desktop/R projects/r-from-zero")
-
 # Create an object for the dataset
 raw <- read.csv("week 2/data/raw/week 2 dataset.csv")
 cln <- readRDS("week 2/data/cleaned/week 2 dataset cleaned.rds")
