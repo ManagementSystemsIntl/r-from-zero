@@ -1,15 +1,15 @@
 ID,city,consent,sex,age,education,employment,registered,received_assistance,satisfaction,dissatisfied_reason,quantity,quality
 1,Quelimane,Yes,Male,52,High School,Unemployed,No,No,,,,
 2,Xai-Xai,No,Female,61,PhD,Unemployed,Yes,Yes,Very satisfied,,No,Poor
-3,Matola,Yes,Female,59,High School,Unemployed,Yes,Yes,Somewhat satisfied,Wait too long,Yes,Great
+3,Matola,Yes,Female,59,High School,Unemployed,Yes,Yes,Somewhat satisfied,,Yes,Great
 4,Quelimane,Yes,Female,44,Master's,Employed,No,Yes,Very satisfied,,Yes,Ok
 5,Tete,Yes,Male,80,No formal education,Unemployed,Yes,Yes,Somewhat dissatisfied,Wait too long,Yes,Great
 6,Pemba,Yes,Male,62,High School,Unemployed,No,Yes,Very dissatisfied,Quality,No,Poor
 7,Tete,Yes,Female,47,Master's,Student,Yes,Yes,Somewhat dissatisfied,Limited variety,Yes,Poor
 8,Matola,Yes,Female,54,Master's,Unemployed,0,Yes,Somewhat dissatisfied,Limited variety,Yes,Poor
 9,Tete,Yes,Female,19,High School,Employed,No,Yes,Very dissatisfied,Quality,No,Ok
-10,Pemba,Yes,Male,26,Master's,Employed,No,Yes,Somewhat satisfied,Quality,Yes,Poor
-11,Inhambane,Yes,Male,62,No formal education,Unemployed,No,Yes,Somewhat satisfied,Quality,Yes,Poor
+10,Pemba,Yes,Male,26,Master's,Employed,No,Yes,Somewhat satisfied,,Yes,Poor
+11,Inhambane,Yes,Male,62,No formal education,Unemployed,No,Yes,Somewhat satisfied,,Yes,Poor
 12,Beira,Yes,Male,79,Master's,Employed,1,Yes,Very satisfied,,No,Great
 13,Nampula,No,Male,,,,,,,,,
 14,XaiXai,Yes,Male,70,Master's,Student,No,No,,,,
@@ -19,13 +19,13 @@ ID,city,consent,sex,age,education,employment,registered,received_assistance,sati
 18,Nampula,Yes,Male,71,Bachelor's,Retired,No,Yes,Very dissatisfied,Quality,No,Poor
 19,Inhambane,No,Male,,,,,,,,,
 20,Matola,Yes,Male,40,PhD,Student,Yes,Yes,Very dissatisfied,Quality,No,Poor
-21,Tete,Yes,Female,41,Master's,Employed,Yes,Yes,Somewhat satisfied,Wait too long,No,Ok
-22,Chimoio,Yes,Female,26,No formal education,Employed,Yes,Yes,Somewhat satisfied,Wait too long,No,Ok
+21,Tete,Yes,Female,41,Master's,Employed,Yes,Yes,Somewhat satisfied,,No,Ok
+22,Chimoio,Yes,Female,26,No formal education,Employed,Yes,Yes,Somewhat satisfied,,No,Ok
 23,Quelimane,Yes,Male,25,High School,Student,Yes,Yes,Somewhat dissatisfied,Quality,Yes,Great
 24,Tete,Yes,Male,26,Bachelor's,Student,0,No,,,,
 25,Beira,Yes,Male,57,Master's,Employed,0,Yes,Somewhat dissatisfied,Quality,Yes,Great
 26,Nampula,Yes,Male,63,Bachelor's,Unemployed,0,Yes,Somewhat dissatisfied,Wait too long,Yes,Ok
-27,Pemba,Yes,Female,44,Bachelor's,Unemployed,0,Yes,Somewhat satisfied,Wait too long,No,Ok
+27,Pemba,Yes,Female,44,Bachelor's,Unemployed,0,Yes,Somewhat satisfied,,No,Ok
 28,Matola,Yes,Female,22,High School,Student,Yes,Yes,Somewhat dissatisfied,Wait too long,No,Poor
 29,Matola,Yes,Male,50,High School,Employed,0,Yes,Very dissatisfied,Quality,Yes,Great
 30,Inhambane,Yes,Male,18,High School,Unemployed,0,No,,,,
@@ -33,9 +33,9 @@ ID,city,consent,sex,age,education,employment,registered,received_assistance,sati
 32,Maputo,No,Female,,,,,,,,,
 33,Inhambane,Yes,Male,62,High School,Unemployed,No,Yes,Somewhat dissatisfied,Wait too long,No,Poor
 34,Pemba,Yes,Male,80,High School,Retired,Yes,Yes,Somewhat dissatisfied,Wait too long,No,Poor
-35,Xai-Xai,No,Female,46,No formal education,Employed,Yes,Yes,Somewhat satisfied,Quality,No,Poor
+35,Xai-Xai,No,Female,46,No formal education,Employed,Yes,Yes,Somewhat satisfied,,No,Poor
 36,Tete,Yes,Male,71,Master's,Student,1,No,,,,
-37,Quelimane,Yes,Female,39,Master's,Student,1,Yes,Somewhat satisfied,Wait too long,Yes,Ok
+37,Quelimane,Yes,Female,39,Master's,Student,1,Yes,Somewhat satisfied,,Yes,Ok
 38,Quelimane,Yes,Male,72,PhD,Unemployed,1,Yes,Very satisfied,,No,Ok
 39,Quelimane,Yes,Male,37,No formal education,Unemployed,1,Yes,Very satisfied,,Yes,Ok
 40,Pemba,No,Male,74,Master's,Retired,No,Yes,Very dissatisfied,Quality,Yes,Poor
@@ -44,7 +44,7 @@ ID,city,consent,sex,age,education,employment,registered,received_assistance,sati
 43,Tete,Yes,Female,45,Master's,Unemployed,Yes,Yes,Very dissatisfied,Wait too long,No,Great
 44,Xai-Xai,No,Male,44,PhD,Unemployed,No,Yes,Very satisfied,,No,Ok
 45,Inhambane,Yes,Male,28,High School,Employed,Yes,Yes,Very satisfied,,Yes,Poor
-46,XaiXai,Yes,Female,27,High School,Student,Yes,Yes,Somewhat satisfied,Wait too long,No,Ok
+46,XaiXai,Yes,Female,27,High School,Student,Yes,Yes,Somewhat satisfied,,No,Ok
 47,Nampula,Yes,Male,54,Bachelor's,Employed,1,Yes,Very dissatisfied,Wait too long,No,Ok
 48,Nampula,Yes,Female,73,No formal education,Unemployed,No,Yes,Very dissatisfied,Wait too long,No,Ok
 49,Nampula,Yes,Female,53,PhD,Student,No,Yes,Very satisfied,,Yes,Poor
@@ -55,13 +55,13 @@ ID,city,consent,sex,age,education,employment,registered,received_assistance,sati
 54,Quelimane,Yes,Female,59,No formal education,Employed,0,Yes,Somewhat dissatisfied,Limited variety,No,Ok
 55,Quelimane,Yes,Male,23,High School,Student,0,Yes,Very satisfied,,Yes,Great
 56,Chimoio,Yes,Male,58,No formal education,Employed,Yes,No,,,,
-57,Matola,Yes,Female,68,No formal education,Employed,Yes,Yes,Somewhat satisfied,Limited variety,No,Poor
+57,Matola,Yes,Female,68,No formal education,Employed,Yes,Yes,Somewhat satisfied,,No,Poor
 58,Xai-Xai,Yes,Female,38,Bachelor's,Student,Yes,No,,,,
 59,Inhambane,Yes,Female,23,Master's,Student,0,Yes,Somewhat dissatisfied,Limited variety,No,Ok
 60,Tete,Yes,Male,23,Bachelor's,Employed,No,No,,,,
 61,Matola,Yes,Male,69,No formal education,Employed,No,No,,,,
 62,Inhambane,Yes,Male,70,No formal education,Retired,No,Yes,Very satisfied,,Yes,Great
-63,Maputo,Yes,Male,54,No formal education,Employed,No,Yes,Somewhat satisfied,Limited variety,No,Ok
+63,Maputo,Yes,Male,54,No formal education,Employed,No,Yes,Somewhat satisfied,,No,Ok
 64,Matola,Yes,Female,78,Bachelor's,Student,No,Yes,Very satisfied,,Yes,Ok
 65,Nampula,Yes,Male,66,Bachelor's,Unemployed,No,No,,,,
 66,Inhambane,Yes,Female,61,High School,Employed,Yes,No,,,,
@@ -71,7 +71,7 @@ ID,city,consent,sex,age,education,employment,registered,received_assistance,sati
 70,Xai-Xai,Yes,Female,62,High School,Student,0,Yes,Somewhat dissatisfied,Limited variety,Yes,Great
 71,Beira,Yes,Female,77,High School,Unemployed,0,Yes,Very dissatisfied,Wait too long,No,Great
 72,Quelimane,Yes,Female,35,Bachelor's,Student,1,Yes,Very dissatisfied,Wait too long,Yes,Great
-73,Nampula,Yes,Female,23,High School,Employed,No,Yes,Somewhat satisfied,Limited variety,No,Ok
+73,Nampula,Yes,Female,23,High School,Employed,No,Yes,Somewhat satisfied,,No,Ok
 74,Inhambane,Yes,Male,32,Master's,Student,No,Yes,Very satisfied,,No,Great
 75,Maputo,No,Male,,,,,,,,,
 76,Chimoio,Yes,Male,21,Bachelor's,Unemployed,No,Yes,Very dissatisfied,Limited variety,Yes,Ok
@@ -88,7 +88,7 @@ ID,city,consent,sex,age,education,employment,registered,received_assistance,sati
 87,Inhambane,Yes,Female,37,Bachelor's,Student,0,Yes,Somewhat dissatisfied,Quality,No,Poor
 88,Nampula,Yes,Male,77,High School,Unemployed,Yes,Yes,Very satisfied,,No,Ok
 89,Maputo,Yes,Female,22,Bachelor's,Student,0,No,,,,
-90,Pemba,Yes,Female,64,No formal education,Employed,0,Yes,Somewhat satisfied,Limited variety,No,Great
+90,Pemba,Yes,Female,64,No formal education,Employed,0,Yes,Somewhat satisfied,,No,Great
 91,Pemba,Yes,Female,29,PhD,Unemployed,Yes,Yes,Somewhat dissatisfied,Limited variety,Yes,Ok
 92,Xai-Xai,Yes,Male,22,Bachelor's,Student,No,No,,,,
 93,Inhambane,Yes,Female,40,High School,Unemployed,No,Yes,Very satisfied,,Yes,Great

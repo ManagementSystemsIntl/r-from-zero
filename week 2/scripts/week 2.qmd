@@ -22,6 +22,8 @@ library(tidyr)
 library(knitr)
 library(rmarkdown)
 library(readr)
+library(flextable)
+
 ```
 
 # Introduction
@@ -60,9 +62,12 @@ In this session, we will cover:
 
 From the previous session, we focused on finding all the different type of errors in a dataset. Generally, if you are receiving a "messy" dataset it is during the pilot or testing phase and you will have an opportunity to correct these scripting mistakes which caused these errors. However, in some cases, not all errors will be caught and there is a need to clean the data before analysis.
 
-First, if you already installed packages from last time, simply load libraries and create an object of the dataset. Also, I'd like to only work with those who consented to be interview, so let's filter the rest out.
+First, installed packages, load libraries and create an object of the dataset. Also, we should only work with those who consented to be interview, so let's filter the rest out.
 
-```{r}
+```{r, warning=FALSE}
+# Install required packages
+install.packages(c("dplyr", "purrr", "readxl", "sjmisc", "sjPlot", "readr", "flextable"))
+
 # Load libraries
 library(dplyr)
 library(purrr)
@@ -70,9 +75,10 @@ library(readxl)
 library(sjmisc)
 library(sjPlot)
 library(readr)
+library(flextable)
 
 # Create an object for the dataset
-raw <- read.csv("week 2/data/raw/week 2 dataset.csv")
+raw <- read.csv("C:/Users/melanie.murphy/Desktop/R projects/r-from-zero/week 2/data/raw/week 2 dataset.csv")
 
 # Filter to keep those who consented to be interviewed 
 raw <- raw %>% 
@@ -90,40 +96,63 @@ Let's run through a few important functions that are commonly used for data tran
 
 This function is very versatile and can be used with a wide range of functions and commands to perform various types of data transformations. It is used to add new variables or transform existing ones within a data frame.
 
-There are many types of functions you might use with `mutate()`but the key ones we will focus on conditional statements.
+There are many types of functions you might use with `mutate()`but the key ones we will focus on are conditional statements.
 
-### Conditional Statements
+### Using `ifelse()`
 
-You can use conditional statements such as `ifelse()` and `case_when()`, which are the main ones I want to cover today.
-
-`ifelse()`: This function is a vectorized conditional statement. It returns a value based on whether a condition is true or false. 
+This function returns a value based on whether a condition is true or false. 
 
 ```{r}
-
-frq(raw$city) 
-# ERROR: Misspelling of City Xai-Xai
+frq(raw$education)
+# ERROR: Incorrect label, "None" 
 
 raw <- raw %>% 
-  mutate(city = case_when(city=="XaiXai" ~ "Xai-Xai",
-                          TRUE ~ city))
+  mutate(education = ifelse(education=="None","No formal education", education))
 
+frq(raw$education)
 ```
 
-`case_when()`: This function creates new variables based on a series of conditional statements. 
-
-After the case_when function, you include the conditional statement of focus. In this example, if the city variable equals (==) "XaiXai", then it should change to (\~) "Xai-Xai"
-
-> The \~ symbol is used in the case_when() function in R to separate the condition from the result. It is part of the syntax for defining a series of conditional statements. Each condition and its corresponding result are defined using the syntax condition \~ result, and multiple conditions can be chained together within the case_when() function.
+There are several questions that have missing values since if respondents didn't receive assistance, they weren't asked these questions. Below we set the missing values to `NA_real_` for `R` to register they are true missing values. 
 
 ```{r}
+frq(raw$satisfaction)
 
+raw <- raw %>% 
+  mutate(satisfaction = ifelse(satisfaction=="", NA_real_, satisfaction),
+         dissatisfied_reason = ifelse(dissatisfied_reason=="", NA_real_, dissatisfied_reason),
+         quantity = ifelse(quantity=="", NA_real_, quantity),
+         quality = ifelse(quality=="", NA_real_, quality))
+
+frq(raw$satisfaction)
+```
+### Using `case_when()`
+
+This function creates new variables based on a series of conditional statements. 
+
+> The ~ symbol is used in the case_when() function in R to separate the condition from the result. It is part of the syntax for defining a series of conditional statements. Each condition and its corresponding result are defined using the syntax condition ~ result, and multiple conditions can be chained together within the case_when() function.
+
+```{r}
 frq(raw$city) 
 # ERROR: Misspelling of City Xai-Xai
 
 raw <- raw %>% 
   mutate(city = case_when(city=="XaiXai" ~ "Xai-Xai",
                           TRUE ~ city))
+frq(raw$city) 
+```
 
+Another example from the survey data. 
+
+```{r}
+frq(raw$registered) 
+# ERROR: registered has some responses coded and some not
+
+raw <- raw %>% 
+  mutate(registered = case_when(registered==1 ~ "Yes",
+                                registered==0 ~ "No", 
+                                TRUE ~ registered))
+
+frq(raw$registered) 
 ```
 
 ::::: box
@@ -132,8 +161,6 @@ Other uses for `mutate()`
 :::
 
 ::: box-container
-
-Below are a few more ways one could use `mutate()`.
 
 **Arithmetic operation:** You can use arithmetic operations to create new variables or modify existing ones.
 
@@ -150,7 +177,7 @@ df
 
 **Mathematical functions:** You can use mathematical functions such as `log()`, `sqrt()`, `exp()`, etc.
 
-```{r}
+```{r, warning=FALSE}
 # Create a new variable that is the square root of the value
 df <- df %>%
   mutate(sqrt_value = sqrt(value))
@@ -169,63 +196,156 @@ df
 **Date and time functions:** You can use date and time functions such as `as.Date()`, `as.POSIXct()`, etc.
 
 ```{r}
-# Example data frame with a date column
-df2 <- data.frame(id = 1:10,
-                  date = as.Date('2025-01-01') + 0:9)
-
 # Create a new variable that extracts the year from the date
-df2 <- df2 %>%
-  mutate(year = format(date, "%Y"))
-df2
+df <- df %>%
+  mutate(date = as.Date('2025-01-01') + 0:9,
+         year = format(date, "%Y"))
+df
 ```
 
 :::
 :::::
 
-## Using `rename`()`
+## Using `rename()`
 
+This function allows you to rename columns in a data frame. It is especially useful for improving the readability of your data by giving columns more descriptive names. The syntax for `rename()` is `rename(new_name = old_name)`, where `new_name` is the new name for the column and `old_name` is the current name of the column.
 
-# Let's Analyze 
+```{r}
+raw <- raw %>%
+  rename(dis_reason = dissatisfied_reason)
+head(raw)
+```
 
+## Save Cleaned Data
+Now that the data is cleaned, let's save it and start using the clean data object. 
 
+```{r}
+# Save cleaned data ----
+write_csv(raw, "C:/Users/melanie.murphy/Desktop/R projects/r-from-zero/week 2/data/cleaned/week 2 dataset cleaned.csv")
+write_rds(raw, "C:/Users/melanie.murphy/Desktop/R projects/r-from-zero/week 2/data/cleaned/week 2 dataset cleaned.rds")
+
+# Create an object for the dataset
+cln <- readRDS("C:/Users/melanie.murphy/Desktop/R projects/r-from-zero/week 2/data/cleaned/week 2 dataset cleaned.rds")
+```
+
+# Let's Analyze!
+
+We made it. We have a nice and tidy dataset ready to use for analyzing the data. Let's run through a few steps commonly used in the data analysis process. 
 
 ## Using `summarize()`
 
 This function manipulates observations based on the value of one or more variables. It is often used to calculate summary statistics such as means, counts, or proportions. Note, `na.rm = TRUE` means you want to exclude the NAs when it calculates the mean.
 
 ```{r}
-age_mn <- raw %>% 
+age_mn <- cln %>% 
   summarize(mean_age = mean(age, na.rm = TRUE))
 
 age_mn
 ```
 
-## Using arrange()
+## Using `groupby()`
+
+This function groups the data by one or more variables. It is often used in conjunction with `summarize()` to calculate summary statistics for each group.
+
+```{r}
+age_city_mn <- cln %>% 
+  group_by(city) %>% 
+  summarize(mean_age = mean(age, na.rm = TRUE))
+
+age_city_mn
+```
+
+Let's add more to this table by adding `n()` to add the number of observations in each city. 
+
+```{r}
+age_city_mn_count <- cln %>% 
+  group_by(city) %>% 
+  summarize(mean_age = mean(age, na.rm = TRUE),
+            N = n()) 
+
+age_city_mn_count
+```
+## Using `arrange()`
 
 This function reorders the rows of a data frame based on the values of one or more variables. You can sort in ascending or descending order using the `desc()` function.
 
 ```{r}
-# Example
-arranged_df <- raw %>% 
-  arrange(desc(age))
+age_city_mn_count_desc <- cln %>% 
+  group_by(city) %>% 
+  summarize(mean_age = mean(age, na.rm = TRUE),
+            N = n()) %>% 
+  arrange(desc(mean_age))
 
-arranged_df
+age_city_mn_count_desc
 ```
 
-## Using groupby()
+# Creating a Flextable
 
-This function groups the data by one or more variables. It is often used in conjunction with summarize() to calculate summary statistics for each group.
+The process we just went through was to create a table-ready object. Now that we know the steps to take, we can go a step further and use the `flextable()` function to make the output report-ready. 
+
+Let's create an object for a different variable than the one used above. First, we need to create a new numeric variable from one of the survey questions. 
 
 ```{r}
-# Example
-grouped_df <- raw %>% 
-  group_by(gender)
+cln <- cln %>% 
+  mutate(reg_bin = ifelse(registered=="Yes", 1, 0))
 
-grouped_df
+frq(cln$reg_bin)
 ```
 
-# Breakout session
+Now, we can create the object.
 
-The goal of the session is to create a flextable but can also cover any other content we have covered so far.
+```{r}
+reg_city_mn_desc <- cln %>% 
+  group_by(city) %>% 
+  summarize(mean_reg = mean(reg_bin, na.rm = TRUE),
+            N = n()) %>% 
+  arrange(desc(mean_reg))
 
-Give a step to clean the data Prepare the object for the table Create a flextable
+reg_city_mn_desc
+```
+Now, let's use this object to create a flextable.
+
+```{r}
+reg_city_mn_desc_flx <- reg_city_mn_desc %>% 
+  flextable()
+reg_city_mn_desc_flx
+```
+
+The presentation can definitely be improved. Let's reorder the table, rename the headers and fix the mean to be in a percent format. 
+
+```{r}
+reg_city_mn_desc_flx <- reg_city_mn_desc %>% 
+  select("City"=city, "Number"=N, "Percent"=mean_reg) %>% 
+  flextable() %>% 
+  set_formatter(Percent=function(x) sprintf("%.1f%%", x*100))
+reg_city_mn_desc_flx
+```
+Now, let's add a caption and autofit the table. 
+
+```{r}
+reg_city_mn_desc_flx <- reg_city_mn_desc %>% 
+  select("City"=city, "Number"=N, "Percent"=mean_reg) %>% 
+  flextable() %>% 
+  set_formatter(Percent=function(x) sprintf("%.1f%%", x*100)) %>%
+  add_footer_lines(values="Q8. Are you the registered beneficiary for this distribution?") %>% 
+  set_table_properties(layout="autofit")
+  
+reg_city_mn_desc_flx
+
+# Save the flextable
+save_as_docx("Q8. Registered Beneficiary"=reg_city_mn_desc_flx, 
+             path=("C:/Users/melanie.murphy/Desktop/R projects/r-from-zero/week 2/output/tables/q8. registered beneficiary.docx"))
+```
+
+# Breakout Session
+
+There are two goals of the breakout sessions. First, to offer any support on material we have covered so far. Second, is to create a flextable of one of the survey questions. 
+
+Participants will be broken out into working groups to follow the steps conducted under the "Creating a Flextable" section above. 
+
+-   Choose one of these questions to analyze: consent, registered, received_assistance, satisfaction, quantity or quality. 
+-   Create a new numeric variable in binary form (0,1) from the question selected, using `mutate()`.
+-   Choose one of these demographic variables to `groupby()`: city, sex, education, employment. Bonus if you create a categorical variable from age and use that. 
+-   Create a table-ready object using the question and disaggregation of choice. 
+-   Create a `flextable()` that includes the number and percent of responses. 
+
