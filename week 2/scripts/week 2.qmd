@@ -1,0 +1,231 @@
+---
+title: "Data Transformation and Some"
+subtitle: R from Zero Training Series - Session 2
+title-block-banner: "#CACACA"
+format: 
+  html:
+    code-fold: false
+    css: styles.css
+    toc: true
+    embed-resources: true
+    smooth-scroll: true
+---
+
+```{r, echo=FALSE, include = FALSE}
+
+library(dplyr)
+library(purrr)
+library(readxl)
+library(sjmisc)
+library(sjPlot)
+library(tidyr)
+library(knitr)
+library(rmarkdown)
+library(readr)
+```
+
+# Introduction
+
+> As a reminder, if you are working in the [repository](https://github.com/ManagementSystemsIntl/r-from-zero), please do a pull to update your workspace with items that have been pushed to the repository.
+
+Last week, we covered the general process to review a dataset to check for common mistakes. The functions we covered were:
+
+`filter()`: This function is used to subset rows in a dataset based on specific conditions. For example, you might want to filter out responses from participants who did not consent to the survey.
+
+`select()`: This function allows you to subset columns in a dataset. This is useful when you want to focus on specific variables for your analysis.
+
+`frq()`: This function is typically used to generate frequency tables for categorical variables, allowing you to see how many times each category appears in the dataset.
+
+`map()`: This function allows you to apply a function to each element of a list or vector. It is useful for applying the same function (like `frq()`) to multiple variables in your dataset.
+
+`tab_xtab()`: This function is used to create cross-tabulations between two categorical variables.
+
+`table()`: This base R function creates a table of counts for categorical variables.
+
+# Session 2: Data Transformation and Some
+
+This week, we will continue the data analysis workflow and prepare the dataset for analysis as well as prepare a nice looking table for a report.
+
+In this session, we will cover:
+
+-   Overview of mistakes found in the raw data
+
+-   Functions to correct those mistakes
+
+-   Functions for summary statistics
+
+-   Creating report-ready tables
+
+# Recap on the Messy Data
+
+From the previous session, we focused on finding all the different type of errors in a dataset. Generally, if you are receiving a "messy" dataset it is during the pilot or testing phase and you will have an opportunity to correct these scripting mistakes which caused these errors. However, in some cases, not all errors will be caught and there is a need to clean the data before analysis.
+
+First, if you already installed packages from last time, simply load libraries and create an object of the dataset. Also, I'd like to only work with those who consented to be interview, so let's filter the rest out.
+
+```{r}
+# Load libraries
+library(dplyr)
+library(purrr)
+library(readxl)
+library(sjmisc)
+library(sjPlot)
+library(readr)
+
+# Create an object for the dataset
+raw <- read.csv("week 2/data/raw/week 2 dataset.csv")
+
+# Filter to keep those who consented to be interviewed 
+raw <- raw %>% 
+  filter(consent=="Yes")
+
+```
+
+# Let's Get You Cleaned!
+
+> It is important to note, we should never change raw data. There should be a record of what the raw exported data was. When we make changes to the data we save the data as a cleaned dataset. When you are working on an advanced analysis process, there would be another layer of data preparation (remember the 02 prepared file I mentioned last time?). But in this case, we can assume we are working with TPM data so we may just need a clean script before we jump into the analysis.
+
+Let's run through a few important functions that are commonly used for data transformation.
+
+## Using `mutate()`
+
+This function is very versatile and can be used with a wide range of functions and commands to perform various types of data transformations. It is used to add new variables or transform existing ones within a data frame.
+
+There are many types of functions you might use with `mutate()`but the key ones we will focus on conditional statements.
+
+### Conditional Statements
+
+You can use conditional statements such as `ifelse()` and `case_when()`, which are the main ones I want to cover today.
+
+`ifelse()`: This function is a vectorized conditional statement. It returns a value based on whether a condition is true or false. 
+
+```{r}
+
+frq(raw$city) 
+# ERROR: Misspelling of City Xai-Xai
+
+raw <- raw %>% 
+  mutate(city = case_when(city=="XaiXai" ~ "Xai-Xai",
+                          TRUE ~ city))
+
+```
+
+`case_when()`: This function creates new variables based on a series of conditional statements. 
+
+After the case_when function, you include the conditional statement of focus. In this example, if the city variable equals (==) "XaiXai", then it should change to (\~) "Xai-Xai"
+
+> The \~ symbol is used in the case_when() function in R to separate the condition from the result. It is part of the syntax for defining a series of conditional statements. Each condition and its corresponding result are defined using the syntax condition \~ result, and multiple conditions can be chained together within the case_when() function.
+
+```{r}
+
+frq(raw$city) 
+# ERROR: Misspelling of City Xai-Xai
+
+raw <- raw %>% 
+  mutate(city = case_when(city=="XaiXai" ~ "Xai-Xai",
+                          TRUE ~ city))
+
+```
+
+::::: box
+::: box-header
+Other uses for `mutate()`
+:::
+
+::: box-container
+
+Below are a few more ways one could use `mutate()`.
+
+**Arithmetic operation:** You can use arithmetic operations to create new variables or modify existing ones.
+
+```{r}
+# Example data frame
+df <- data.frame(id = 1:10,
+                 value = rnorm(10))
+
+# Create a new variable that is double the value
+df <- df %>%
+  mutate(double_value = value * 2)
+df
+```
+
+**Mathematical functions:** You can use mathematical functions such as `log()`, `sqrt()`, `exp()`, etc.
+
+```{r}
+# Create a new variable that is the square root of the value
+df <- df %>%
+  mutate(sqrt_value = sqrt(value))
+df
+```
+
+**Aggregated values:** You can use aggregated values with functions like `mean()`, `sum(),` `min()`, `max()`, etc.
+
+```{r}
+# Create a new variable that is the mean value within each group
+df <- df %>%
+  mutate(mean_value = mean(value))
+df
+```
+
+**Date and time functions:** You can use date and time functions such as `as.Date()`, `as.POSIXct()`, etc.
+
+```{r}
+# Example data frame with a date column
+df2 <- data.frame(id = 1:10,
+                  date = as.Date('2025-01-01') + 0:9)
+
+# Create a new variable that extracts the year from the date
+df2 <- df2 %>%
+  mutate(year = format(date, "%Y"))
+df2
+```
+
+:::
+:::::
+
+## Using `rename`()`
+
+
+# Let's Analyze 
+
+
+
+## Using `summarize()`
+
+This function manipulates observations based on the value of one or more variables. It is often used to calculate summary statistics such as means, counts, or proportions. Note, `na.rm = TRUE` means you want to exclude the NAs when it calculates the mean.
+
+```{r}
+age_mn <- raw %>% 
+  summarize(mean_age = mean(age, na.rm = TRUE))
+
+age_mn
+```
+
+## Using arrange()
+
+This function reorders the rows of a data frame based on the values of one or more variables. You can sort in ascending or descending order using the `desc()` function.
+
+```{r}
+# Example
+arranged_df <- raw %>% 
+  arrange(desc(age))
+
+arranged_df
+```
+
+## Using groupby()
+
+This function groups the data by one or more variables. It is often used in conjunction with summarize() to calculate summary statistics for each group.
+
+```{r}
+# Example
+grouped_df <- raw %>% 
+  group_by(gender)
+
+grouped_df
+```
+
+# Breakout session
+
+The goal of the session is to create a flextable but can also cover any other content we have covered so far.
+
+Give a step to clean the data Prepare the object for the table Create a flextable
